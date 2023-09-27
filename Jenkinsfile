@@ -1,12 +1,16 @@
 pipeline {
     agent any
     
+    environment {
+        REPOSITORY_URL = 'https://github.com/TeknoPathshala/ChatBotApp' // Replace with your actual repository URL
+    }
+    
     stages {
         stage('Checkout') {
             steps {
                 // Checkout your repository
                 script {
-                    def checkoutCmd = """git clone ${env.REPOSITORY_URL}"""
+                    def checkoutCmd = """git clone ${REPOSITORY_URL}"""
                     sh checkoutCmd
                 }
             }
