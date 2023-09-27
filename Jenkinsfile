@@ -3,6 +3,7 @@ pipeline {
     
     environment {
         REPOSITORY_URL = 'https://github.com/TeknoPathshala/ChatBotApp' // Replace with your actual repository URL
+        SUDO_PASSWORD = '1432' // Replace with your actual sudo password
     }
     
     stages {
@@ -18,12 +19,12 @@ pipeline {
         
         stage('Deploy Chatbot App') {
             steps {
-                dir('your-repository-directory') {
+                dir('ChatBoatApp') {
                     // Replace 'your-repository-directory' with the actual directory containing your app
-                    // Install required dependencies and deploy your app
+                    // Install required dependencies and deploy your app using sudo with -S option
                     sh """
-                    sudo apt-get update
-                    sudo apt-get install -y python3-pip
+                    echo '${SUDO_PASSWORD}' | sudo -S apt-get update
+                    echo '${SUDO_PASSWORD}' | sudo -S apt-get install -y python3-pip
                     pip3 install -r requirements.txt
                     python3 train.py
                     python3 app.py
