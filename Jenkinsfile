@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Run the chatbot within the virtual environment in the background using nohup
-                sh 'nohup python chatbot.py > chatbot.log 2>&1 &'
+                sh 'nohup python app.py > chatbot.log 2>&1 &'
             }
         }
     }
