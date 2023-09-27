@@ -25,9 +25,8 @@ pipeline {
         stage('Deploy Chatbot App') {
             steps {
                 dir('ChatBotApp') {
-                    // Install required dependencies and deploy your app using sudo with -S option
+                    // Install required Python packages and run your app
                     sh """
-                    pip3 install -r requirements.txt
                     python3 train.py
                     python3 app.py
                     """
