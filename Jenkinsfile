@@ -9,18 +9,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your repository
+                // Check if the repository directory already exists
                 script {
-                    def checkoutCmd = """git clone ${REPOSITORY_URL}"""
-                    sh checkoutCmd
+                    if (!fileExists('ChatBotApp')) {
+                        def checkoutCmd = """git clone ${REPOSITORY_URL}"""
+                        sh checkoutCmd
+                    } else {
+                        echo "Repository directory already exists. Updating..."
+                        sh "cd ChatBotApp && git pull"
+                    }
                 }
             }
         }
         
         stage('Deploy Chatbot App') {
             steps {
-                dir('ChatBoatAppNew') {
-                    // Replace 'your-repository-directory' with the actual directory containing your app
+                dir('ChatBotApp') {
                     // Install required dependencies and deploy your app using sudo with -S option
                     sh """
                     pip3 install -r requirements.txt
