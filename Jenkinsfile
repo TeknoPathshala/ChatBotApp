@@ -19,7 +19,7 @@ pipeline {
         
         stage('Deploy Chatbot App') {
             steps {
-                dir('ChatBoatApp') {
+                dir('ChatBoatAppNew') {
                     // Replace 'your-repository-directory' with the actual directory containing your app
                     // Install required dependencies and deploy your app using sudo with -S option
                     sh """
