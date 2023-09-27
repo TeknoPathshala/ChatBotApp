@@ -27,7 +27,7 @@ pipeline {
                 dir('ChatBotApp') {
                     // Install required Python packages and run your app
                     sh """
-                    pip3 install tensorflow nltk
+                    pip3 install nltk
                     python3 train.py
                     python3 app.py
                     """
