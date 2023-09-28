@@ -72,8 +72,8 @@ for doc in documents:
 
 # Shuffle training data and convert to NumPy arrays
 random.shuffle(training)
-train_x = np.array(list(training[:, 0]))  # Convert train_x to a NumPy array
-train_y = np.array(list(training[:, 1]))  # Convert train_y to a NumPy array
+train_x = np.array([x[0] for x in training])  # Extract the bag of words from training data
+train_y = np.array([x[1] for x in training])  # Extract the output rows from training data
 
 # Create a neural network model
 model = Sequential()
