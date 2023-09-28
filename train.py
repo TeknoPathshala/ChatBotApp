@@ -70,13 +70,10 @@ for doc in documents:
 
     training.append([bag, output_row])
 
-# Shuffle training data and convert to NumPy array
+# Shuffle training data and convert to NumPy arrays
 random.shuffle(training)
-training = np.array(training)
-
-# Split training data into features and labels
-train_x = list(training[:, 0])
-train_y = list(training[:, 1])
+train_x = np.array(list(training[:, 0]))  # Convert train_x to a NumPy array
+train_y = np.array(list(training[:, 1]))  # Convert train_y to a NumPy array
 
 # Create a neural network model
 model = Sequential()
@@ -91,7 +88,7 @@ sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=["accuracy"])
 
 # Train the model
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
+hist = model.fit(train_x, train_y, epochs=200, batch_size=5, verbose=1)
 
 # Save the trained model
 model.save("chatbot_model.h5")
