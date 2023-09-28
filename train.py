@@ -31,6 +31,7 @@ for intent in intents["intents"]:
         words.extend(w)
         # adding documents
         documents.append((w, intent["tag"]))
+
         # adding classes to our class list
         if intent["tag"] not in classes:
             classes.append(intent["tag"])
@@ -51,35 +52,39 @@ pickle.dump(classes, open("classes.pkl", "wb"))
 # initializing training data
 training = []
 output_empty = [0] * len(classes)
+class_to_int = {intent: i for i, intent in enumerate(classes)}
 
 for doc in documents:
     # initializing bag of words
-    bag = []
+    bag = [0] * len(words)
+
     # list of tokenized words for the pattern
     pattern_words = doc[0]
+
     # lemmatize each word - create base word, in an attempt to represent related words
     pattern_words = [lemmatizer.lemmatize(word.lower()) for word in pattern_words]
-    # create our bag of words array with 1, if word match found in the current pattern
-    for w in words:
-        bag.append(1) if w in pattern_words else bag.append(0)
 
-    # output is a '0' for each tag and '1' for the current tag (for each pattern)
+    # create our bag of words array with 1, if word match found in current pattern
+    for w in words:
+        if w in pattern_words:
+            bag[words.index(w)] = 1
+
+    # output is a list of zeros, except for the index corresponding to the intent
     output_row = list(output_empty)
-    output_row[classes.index(doc[1])] = 1
+    output_row[class_to_int[doc[1]]] = 1
 
     training.append([bag, output_row])
 
-# Shuffle the training data
+# shuffle our features and turn into np.array
 random.shuffle(training)
-
-# Convert the training data to NumPy arrays
 training = np.array(training)
+
+# create train and test lists. X - patterns, Y - intents
 train_x = list(training[:, 0])
 train_y = list(training[:, 1])
-
 print("Training data created")
 
-# Actual training
+# actual training
 # Create model...
 model = Sequential()
 model.add(Dense(128, input_shape=(len(train_x[0]),), activation="relu"))
