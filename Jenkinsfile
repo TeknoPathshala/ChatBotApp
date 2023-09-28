@@ -27,7 +27,9 @@ pipeline {
                 dir('ChatBotApp') {
                     // Install required Python packages and run your app
                     sh """
-                    pip3 install nltk flask_ngrok
+                    sudo apt-get update
+                    sudo apt-get install -y python3-pip
+                    pip3 install nltk flask_ngrok tensorflow 
                     python3 train.py
                     python3 app.py
                     """
