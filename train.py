@@ -57,4 +57,29 @@ for doc in documents:
         bag.append(1) if w in pattern_words else bag.append(0)
 
     output_row = list(output_empty)
-    output_row[classes.index(doc[1])]
+    output_row[classes.index(doc[1])] = 1
+
+    training.append([bag, output_row])
+
+# Shuffle and convert training data to numpy arrays
+random.shuffle(training)
+training = np.array(training)
+
+train_x = list(training[:, 0])
+train_y = list(training[:, 1])
+
+# Create and compile the model
+model = Sequential()
+model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(64, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(len(train_y[0]), activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer=tf.keras.optimizers.SGD(learning_rate=0.01, momentum=0.9, nesterov=True), metrics=['accuracy'])
+
+# Train the model
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
+
+# Save the trained model
+model.save('chatbot_model.h5', hist)
+print("Model created.")
