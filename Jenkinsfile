@@ -29,7 +29,7 @@ pipeline {
                     sh """
                     sudo apt-get update
                     sudo apt-get install -y python3-pip
-                    pip3 install nltk flask_ngrok tensorflow Flask
+                    pip3 install nltk flask_ngrok tensorflow Flask tensorflow-gpu
                     python3 train.py
                     python3 app.py
                     """
