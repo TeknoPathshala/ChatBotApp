@@ -34,9 +34,7 @@ source ./venv/bin/activate  # sh, bash, or zsh
 8. To access your bot on localhost, go to ```http://127.0.0.1:5000/ ``` If you're on Ngrok your url will be ```some-text.ngrok.io```
 
 ### Step-By-Step Explanation and Installation Guide
-> https://dentricedev.com/blog/how-to-create-an-ai-chatbot-in-python-and-flask-gvub
-> 
-> https://dev.to/dennismaina/how-to-create-an-ai-chatbot-in-python-and-flask-1c3m
+>
 ### Execution
 To run this Bot, first run the ```train.py``` file to train the model. This will generate a file named ```chatbot_model.h5```<br>
 This is the model which will be used by the Flask REST API to easily give feedback without the need to retrain.<br>
@@ -45,25 +43,11 @@ To add more terms and vocabulary to the bot, modify the ```intents.json``` file 
 
 
 <!-- Actual text -->
-## Find me on
-[![Twitter][1.2]][1]  [![LinkedIn][2.2]][2]
 
-<!-- Icons -->
-
-[1.2]: http://i.imgur.com/wWzX9uB.png (Twitter)
-[2.2]: https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/linkedin-3-16.png (LinkedIn)
-
-<!-- Links to my social media accounts -->
-[1]: https://twitter.com/dennisjmaina
-[2]: https://www.linkedin.com/in/dennismaina/
-[3]: https://instagram.com/denno.h_
 
 ## Having troubles implementing?
- > Reach out to me maina@dentricedev.com 
+ > Reach out to me teknopathshala@gmail.com
  I will be happy to assist 
 # 
 ## want something improved or added?
-  > Fork the repo @ [GitHub](https://github.com/mainadennis/An-AI-Chatbot-in-Python-and-Flask).
-# 
-## Regards,
- > [DentriceDev Solutions](https://dentricedev.com).
+ 
